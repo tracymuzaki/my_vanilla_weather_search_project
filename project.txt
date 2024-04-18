@@ -1,0 +1,10 @@
+Weather App
+
+-Setup
+-Design
+-HTML
+-CSS
+-Search engine
+-Basic JavaScript
+-API Integration
+-Forecast
