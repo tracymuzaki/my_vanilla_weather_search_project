@@ -1,5 +1,4 @@
 Weather App
-
 -Setup
 -Design
 -HTML
@@ -8,3 +7,11 @@ Weather App
 -Basic JavaScript
 -API Integration
 -Forecast
+
+//////////////////////////////////////////////
+Forecast Plan
+-Design
+-HTML
+-CSS
+-Forecast API
+-API Integration
