@@ -104,17 +104,18 @@ main {
 }
 
 .weather-forecast-icon {
-  font-size: 38px;
+  width: 65px;
+  height: 65px;
 }
 
 .weather-forecast-temperature {
   margin-top: 10px;
   display: flex;
   justify-content: space-evenly;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-.weather-forecast-temperature-min{
+.weather-forecast-temperature-min {
   opacity: 0.5;
 }
 

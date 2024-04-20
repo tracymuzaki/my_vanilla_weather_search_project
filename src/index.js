@@ -50,6 +50,12 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "t0ofa24ea50a4bf83aaaf293402db0a1";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -57,28 +63,33 @@ function getForecast(city) {
 }
 
 function displayForecast(response) {
-  console.log(response);
-  let forecastElement = document.querySelector("#forecast");
-  let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+  let days = response.data.daily;
   let forecastHTML = "";
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="weather-forecast-day">
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon">🌤️</div>
+  days.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="weather-forecast-day">
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
+        <img src="${day.condition.icon_url}" alt="${
+          day.condition.icon
+        }" class="weather-forecast-icon">
           <div class="weather-forecast-temperature">
-            <span class="weather-forecast-temperature-max">15°</span>
-            <span class="weather-forecast-temperature-min">9°</span>
+            <span class="weather-forecast-temperature-max">${Math.round(
+              day.temperature.maximum
+            )}°</span>
+            <span class="weather-forecast-temperature-min">${Math.round(
+              day.temperature.minimum
+            )}°</span>
           </div>
       </div>`;
+    }
   });
-
+  let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHTML;
 }
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 searchCity("Paris");
-
